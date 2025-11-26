@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 @Injectable({
@@ -14,5 +14,14 @@ export class Task {
 
   getTasks() {
     return of(this.tasks).pipe(delay(1000));
+  }
+
+  private tasksSubject = new BehaviorSubject(this.tasks);
+  tasks$ = this.tasksSubject.asObservable();
+
+  addTask(title: string) {
+    const newTask = { id: Date.now(), title };
+    this.tasks = [...this.tasks, newTask];
+    this.tasksSubject.next(this.tasks);
   }
 }

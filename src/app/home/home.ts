@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Task } from '../core/services/task';
 
@@ -10,18 +10,34 @@ import { Task } from '../core/services/task';
 })
 export class Home {
 
-  tasks$!: ReturnType<Task['getTasks']>;
+  // tasks$!: ReturnType<Task['getTasks']>;
 
-  constructor(private taskService: Task) {
-    this.tasks$ = this.taskService.getTasks();
-  }
+  // constructor(private taskService: Task) {
+  //   this.tasks$ = this.taskService.getTasks();
+  // }
+
+  private cdr = inject(ChangeDetectorRef);
 
   count=0;
+  intervalId=0;
+
+  taskService = inject(Task);
+  tasks$ = this.taskService.tasks$;
+
+  addTask(title: string) {
+    this.taskService.addTask(title);
+  }
 
   ngOnInit() {
     console.log('ngOnInit executé');
     setInterval(() => {
       this.count++;
+      this.cdr.markForCheck();
     }, 500);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
+    console.log('Compteur stoppé !');
   }
 }
