@@ -4,7 +4,7 @@ import { Task } from '../core/services/task';
 
 @Component({
   selector: 'app-home',
-  imports: [ AsyncPipe ],
+  imports: [ AsyncPipe ], 
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

@@ -70,3 +70,11 @@ For more information on using the Angular CLI, including detailed command refere
 - Pas besoin d’appeler `getTasks()` à chaque fois : la donnée est **vivante**.
 - `| async` gère l’abonnement et le désabonnement automatiquement.
 - Le flux reste cohérent entre le service et la vue.
+
+## Perso
+
+### 1. Points Fort
+- Angular est un framework principalement front qui permet (en complément d'éléments tels que RxJS) d'obtenir une page web entièrement dynamique. De plus, ce Framework permet une navigation entre les différentes pages de manière instantanée, sans chargement ou rechargement de page web.
+
+- L'organisation interne du framework se décompose en `Component`créables avec la commande `ng g c "Nom du composant"`.
+
