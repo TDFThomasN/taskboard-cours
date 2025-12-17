@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "TaskBoard_Pro": {
+    "TaskBoardPro2": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,16 +56,31 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "TaskBoard_Pro:build:production"
+              "buildTarget": "TaskBoardPro2:build:production"
             },
             "development": {
-              "buildTarget": "TaskBoard_Pro:build:development"
+              "buildTarget": "TaskBoardPro2:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
         }
       }
     }
