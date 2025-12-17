@@ -4,6 +4,9 @@
     <ul>
         @for (t of tasks; track t.id) {
             <li> {{ t.title }} </li>
+            <!-- <button type="button" (click)="highlight(t)">
+                Mettre en avant
+            </button> -->
         }
     </ul>
 } @else {
@@ -15,3 +18,5 @@
 <button (click)="addTask('Nouvelle tâche')">
     Ajouter une tâche
 </button>
+
+<div #highlightContainer></div>
