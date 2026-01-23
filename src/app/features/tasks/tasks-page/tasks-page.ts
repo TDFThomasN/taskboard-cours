@@ -1,27 +1,51 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import {Component, inject, ViewChild, ViewContainerRef} from '@angular/core';
+import { Task as TaskService} from '../../../core/service/task';
+import {AsyncPipe} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {Task} from '../../../task/task';
+import {TaskHighlight} from '../task-highlight/task-highlight';
 
-@Injectable({
-  providedIn: 'root',
+@Component({
+  selector: 'app-tasks-page',
+  imports: [
+    AsyncPipe,
+    FormsModule
+  ],
+  templateUrl: './tasks-page.html',
+  styleUrl: './tasks-page.css',
 })
-export class Task {
-  private tasks = [
-    { id: 1, title: 'Préparer le cours Angular'},
-    { id: 2, title: 'Réparer le cours Angular'},
-    { id: 3, title: 'Parer le cours Angular'}
-  ];
+export class TasksPage {
+  task$!: ReturnType<TaskService['getTasks']>;
+  addTask$ = inject(TaskService);
 
-  getTasks() {
-    return of(this.tasks).pipe(delay(1000));
+  constructor(protected taskService: TaskService) {
+    this.task$ = this.taskService.getTasks();
   }
 
-  private tasksSubject = new BehaviorSubject(this.tasks);
-  tasks$ = this.tasksSubject.asObservable();
-
   addTask(title: string) {
-    const newTask = { id: Date.now(), title };
-    this.tasks = [...this.tasks, newTask];
-    this.tasksSubject.next(this.tasks);
+    this.addTask$.addTask(title);
+  }
+
+  // méthode pour supprimer une tâche via le service
+  deleteTask(task: { id: number }) {
+    this.addTask$.deleteTask(task.id);
+  }
+
+  @ViewChild('highlightContainer', { read: ViewContainerRef })
+  container!: ViewContainerRef;
+
+  highlight(task: { id: number; title: string; completed: boolean } | {
+    id: number;
+    title: string;
+    completed: boolean
+  } | { id: number; title: string; completed: boolean }) {
+    // Efface le contenu précédent
+    this.container.clear();
+
+    // Crée le composant TaskHighlight
+    const ref = this.container.createComponent(TaskHighlight);
+
+    // Passe les données au composant
+    ref.instance.title = task.title;
   }
 }

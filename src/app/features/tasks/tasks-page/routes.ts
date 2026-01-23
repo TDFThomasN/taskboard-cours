@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { Task } from './tasks-page';
+import {TasksPage} from './tasks-page';
 
 export const TASKS_ROUTES: Routes = [
-    { path: '', component: Task }
+  { path: '', component: TasksPage }
 ];

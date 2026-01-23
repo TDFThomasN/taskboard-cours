@@ -1,0 +1,27 @@
+<h2>Liste des tâches</h2>
+@if (task$ | async; as tasks) {
+  <ul>
+    @for (t of tasks; track t.id) {
+      <li>
+        {{ t.title }}
+        <button type="button" (click)="highlight(t)">
+          Mettre en avant
+        </button>
+        <!-- nouveau bouton Supprimer -->
+        <button type="button" class="button btn-ghost" (click)="deleteTask(t)">Supprimer</button>
+      </li>
+    }
+  </ul>
+} @else {
+  <p>Chargement des tâches...</p>
+}
+
+<hr />
+
+<h3>Actions</h3>
+<!-- input pour personnaliser le titre de la tâche -->
+<input #newTaskTitle type="text" placeholder="Titre de la tâche" class="mb-8" />
+<button class="button" (click)="addTask(newTaskTitle.value); newTaskTitle.value = ''">Ajouter une tâche</button>
+
+<!-- Zone d'injection du composant dynamique -->
+<div #highlightContainer></div>

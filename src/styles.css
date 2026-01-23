@@ -1,1 +1,143 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Global styles pour TaskBoardPro
+   - Reset simple
+   - Typographie, couleurs
+   - Conteneurs et layout
+   - Header / Navbar
+   - Boutons, listes et cartes de tâches
+   - Responsive léger
+*/
+:root{
+  --bg:#0f1724; /* fond foncé */
+  --card:#0b1220;
+  --muted:#9aa7b2;
+  --accent:#00bcd4;
+  --accent-2:#7c4dff;
+  --surface:#111827;
+  --glass: rgba(255,255,255,0.04);
+  --radius:10px;
+  --gap:16px;
+  --max-width:1100px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, Roboto, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #071021 0%, #081827 60%);
+  color:#e6eef3;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  padding:24px 12px;
+}
+
+/* Conteneur général */
+.app-root, .page-container{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding: var(--gap);
+}
+
+/* Header */
+.app-header{
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: var(--radius);
+  padding:12px 16px;
+  margin-bottom:20px;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.6), inset 0 -1px 0 rgba(255,255,255,0.02);
+}
+.header-container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo-section{display:flex;align-items:center;gap:12px}
+.app-title{
+  font-size:20px;
+  margin:0;
+  letter-spacing:0.4px;
+  color:var(--accent);
+}
+.navbar{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  color:var(--muted);
+}
+.navbar a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:8px;
+  transition:all .18s ease;
+}
+.navbar a.active, .navbar a:hover{
+  background: rgba(0,0,0,0.2);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Main sections */
+h2,h3,h1{color:#eaf6fb;margin:0 0 8px 0}
+p{color:var(--muted);margin-top:0}
+
+/* Card / listes */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:calc(var(--radius) - 2px);
+  padding:16px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  margin-bottom:16px;
+}
+
+ul.task-list{
+  list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px
+}
+ul.task-list li{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 14px;background:var(--glass);
+  border-radius:8px;color:#e6eef3;
+}
+ul.task-list li strong{font-weight:600}
+
+.button,
+button{
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  border:0;color:#021018;padding:8px 12px;border-radius:8px;
+  cursor:pointer;font-weight:600;box-shadow: 0 6px 18px rgba(124,77,255,0.12);
+}
+.button.ghost, .btn-ghost{
+  background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)
+}
+button:active{transform:translateY(1px)}
+
+input[type="text"], textarea{
+  background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;color:inherit;border-radius:8px;
+}
+
+/* Small responsive helpers */
+@media (max-width:720px){
+  .header-container{flex-direction:column;align-items:flex-start;gap:10px}
+  .navbar{width:100%;justify-content:flex-start;flex-wrap:wrap}
+}
+
+/* Helpers for task highlight component */
+.highlight-card{
+  background: linear-gradient(135deg, rgba(0,188,212,0.08), rgba(124,77,255,0.06));
+  padding:16px;border-radius:12px;color:#e6eef3;border:1px solid rgba(255,255,255,0.02);
+}
+
+/* Footer / small text */
+.small{font-size:13px;color:var(--muted)}
+
+/* Utility spacing */
+.mt-8{margin-top:8px}
+.mb-8{margin-bottom:8px}
+
+/* Accessibility focus */
+a:focus, button:focus{outline:2px solid rgba(0,188,212,0.18);outline-offset:2px}
+
+/* End of global styles */

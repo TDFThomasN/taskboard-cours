@@ -1,22 +1,3 @@
-<p>home works!</p>
-
-@if (tasks$ | async; as tasks) {
-    <ul>
-        @for (t of tasks; track t.id) {
-            <li> {{ t.title }} </li>
-            <!-- <button type="button" (click)="highlight(t)">
-                Mettre en avant
-            </button> -->
-        }
-    </ul>
-} @else {
-    <p>Chargement des tâches</p>
-}
-
-<p>Temps Ecoulé : {{ count/2 }} secondes</p>
-
-<button (click)="addTask('Nouvelle tâche')">
-    Ajouter une tâche
-</button>
-
-<div #highlightContainer></div>
+<h1>Bienvenue sur la page d'accueil</h1>
+<p>Ceci est la page principale de notre application Angular.</p>
+<a routerLink="/about">Aller à la page À propos</a>

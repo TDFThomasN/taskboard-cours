@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './task-highlight.css',
 })
 export class TaskHighlight {
-  @Input() title = ''; // le composant peut recevoir une donnée (le titre ici)
+  @Input() title: string | undefined = ''; // le composant peut recevoir une donnée (le titre ici)
 }
