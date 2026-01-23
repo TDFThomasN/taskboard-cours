@@ -1,0 +1,1 @@
+import{Oa as a,Pa as s,_a as p,wa as n}from"./chunk-LVX2VMFQ.js";var t=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=n({type:o,selectors:[["app-about"]],decls:2,vars:0,template:function(e,m){e&1&&(a(0,"h1"),p(1,"\xC0 propos de nous !"),s())},encapsulation:2})};var l=[{path:"",component:t}];export{l as ABOUT_ROUTES};
